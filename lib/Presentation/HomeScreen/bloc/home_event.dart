@@ -1,4 +1,11 @@
 part of 'home_bloc.dart';
 
-@immutable
-abstract class HomeEvent {}
+class HomeEvent extends Equatable {
+  List<Object?> get props => [];
+}
+
+class HomeInitalEvent extends HomeEvent {}
+
+class PostLoadedEvent extends HomeEvent {}
+
+class PostCachedEvent extends HomeEvent {}
