@@ -31,7 +31,7 @@ Future<List<commentModel>> getAllComments(int post_id) async {
   }
 }
 
-void postComments(int postID, Map<String, dynamic> data) async {
-  var response = await postRequest('/posts/${postID}/comments', data);
-  print(response);
+void postComments(int post_id, Map<String, dynamic> data) async {
+  var response = await postRequest('/post/${post_id}/comments', data);
+  print('response is ${response}');
 }

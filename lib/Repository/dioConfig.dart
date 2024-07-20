@@ -9,6 +9,7 @@ final dio = Dio(options);
 
 Future<dynamic> postRequest(String? endpoint, Map<String, dynamic> data) async {
   var postResult = await dio.post(endpoint!, data: data);
+  return postResult;
 }
 
 Future<dynamic> getRequest(String? endpoint) async {

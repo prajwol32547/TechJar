@@ -82,7 +82,17 @@ class _ListCardState extends State<ListCard> {
                   },
                   icon: Icon(Icons.comment_outlined),
                 ),
-                IconButton(onPressed: null, icon: Icon(Icons.share))
+                IconButton(
+                    onPressed: () {
+                      postComments(100, {
+                        "postId": 100,
+                        "id": 501,
+                        "name": "Prajwol",
+                        "email": "Zol@lizzie.com",
+                        "body": "This is my post"
+                      });
+                    },
+                    icon: Icon(Icons.share))
               ],
             ),
           ],

@@ -9,6 +9,7 @@ part 'detail_state.dart';
 class DetailBloc extends Bloc<DetailEvent, DetailState> {
   DetailBloc(DetailState initialState) : super(initialState) {
     on<DetailInitialEvent>(_onInitialize);
+    on<DetailPostEvent>(_OnPostDetail);
   }
 
   @override
@@ -17,6 +18,16 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
     try {
       List<commentModel> obj = await getAllComments(event.postId!);
       emit(state.copyWith(isLoading: false, commentModelObj: obj));
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  _OnPostDetail(DetailPostEvent event, Emitter<DetailState> emit) async {
+    emit(state.copyWith(requestSend: true));
+    try {
+      Map<String, dynamic> data = event.payload!;
+      // var request= await postComments(data);
     } catch (e) {
       print(e);
     }
