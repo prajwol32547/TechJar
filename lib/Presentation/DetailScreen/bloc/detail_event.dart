@@ -12,6 +12,8 @@ class DetailInitialEvent extends DetailEvent {
 }
 
 class DetailPostEvent extends DetailEvent {
+  int? postId;
+
   Map<String, dynamic>? payload;
-  DetailPostEvent({required this.payload});
+  DetailPostEvent({required this.postId, required this.payload});
 }

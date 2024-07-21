@@ -19,6 +19,14 @@ class ListModel {
       body: json['body'],
     );
   }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['userId'] = this.userId;
+    data['id'] = this.postId;
+    data['title'] = this.title;
+    data['body'] = this.body;
+    return data;
+  }
 
   @override
   String toString() {

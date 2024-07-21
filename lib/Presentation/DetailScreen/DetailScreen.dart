@@ -24,11 +24,12 @@ class DetailScreen extends StatelessWidget {
               padding: EdgeInsets.all(8),
               child: BlocConsumer<DetailBloc, DetailState>(
                 listener: (context, state) {
-                  if (state.isLoading == true) {
-                    CircularProgressIndicator();
-                  }
+                  print(state.isLoading);
                 },
                 builder: (context, state) {
+                  if (state.isLoading == true) {
+                    return Center(child: CircularProgressIndicator());
+                  }
                   return ListView.separated(
                     itemBuilder: (context, index) {
                       commentModel model = state.commentModelObj![index];
