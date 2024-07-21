@@ -42,7 +42,9 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
         emit(state.copyWith(requestSend: false));
       }
     } catch (e) {
-      print(e);
+      print('error hapened ${e}');
+      emit(state.copyWith(
+          requestSend: false, commentSentMessage: 'Error occured'));
     }
   }
 }

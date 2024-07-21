@@ -83,7 +83,8 @@ class DetailScreen extends StatelessWidget {
                                 payload: data,
                               ),
                             );
-                        if (state.requestSend == false) {
+                        if (state.commentSentMessage == 'Error occured' ||
+                            state.commentSentMessage != null) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               elevation: 10,
@@ -105,29 +106,30 @@ class DetailScreen extends StatelessWidget {
                               backgroundColor: Colors.grey[800],
                             ),
                           );
-                        }
-                      } else {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            elevation: 10,
-                            behavior: SnackBarBehavior.floating,
-                            content: SizedBox(
-                              width: MediaQuery.of(context).size.width - 40,
-                              child: Row(
-                                children: [
-                                  Icon(Icons.clear_rounded, color: Colors.red),
-                                  SizedBox(width: 8),
-                                  Expanded(
-                                    child: Text('Please write comment'),
-                                  ),
-                                ],
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              elevation: 10,
+                              behavior: SnackBarBehavior.floating,
+                              content: SizedBox(
+                                width: MediaQuery.of(context).size.width - 40,
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.clear_rounded,
+                                        color: Colors.red),
+                                    SizedBox(width: 8),
+                                    Expanded(
+                                      child: Text('Error occured'),
+                                    ),
+                                  ],
+                                ),
                               ),
+                              duration: Duration(seconds: 3),
+                              backgroundColor: Colors.grey[800],
                             ),
-                            duration: Duration(seconds: 3),
-                            backgroundColor: Colors.grey[800],
-                          ),
-                        );
-                      }
+                          );
+                        }
+                      } else {}
                     },
                     icon: Icon(Icons.send),
                   );

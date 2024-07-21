@@ -6,6 +6,8 @@ class DetailState extends Equatable {
   List<Object?> get props => [isLoading, requestSend, commentModelObj];
   bool? isLoading;
   bool? requestSend;
+  String? commentSentMessage;
+
   int? post_id;
   List<commentModel>? commentModelObj;
 
@@ -13,17 +15,20 @@ class DetailState extends Equatable {
       {this.isLoading = false,
       this.requestSend = false,
       this.post_id = 0,
+      this.commentSentMessage,
       this.commentModelObj = const []});
 
   DetailState copyWith(
       {bool? isLoading,
       bool? requestSend,
+      String? commentSentMessage,
       List<commentModel>? commentModelObj,
       int? post_id}) {
     return DetailState(
         isLoading: isLoading ?? this.isLoading,
         requestSend: requestSend ?? this.requestSend,
         commentModelObj: commentModelObj ?? this.commentModelObj,
-        post_id: post_id ?? this.post_id);
+        post_id: post_id ?? this.post_id,
+        commentSentMessage: commentSentMessage ?? this.commentSentMessage);
   }
 }
