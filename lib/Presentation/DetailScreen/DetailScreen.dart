@@ -5,7 +5,8 @@ import 'package:tecapp/Presentation/DetailScreen/bloc/detail_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+  DetailScreen({Key? key}) : super(key: key);
+  TextEditingController commentController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -49,13 +50,88 @@ class DetailScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: TextFormField(
+                    controller: commentController,
                     decoration: InputDecoration(
                       hintText: 'Add a comment...',
                       border: OutlineInputBorder(),
                     ),
                   ),
                 ),
-                IconButton(onPressed: null, icon: Icon(Icons.send))
+                BlocConsumer<DetailBloc, DetailState>(
+                    listener: (context, state) {
+                  if (state.requestSend!) {
+                    print('Request sending...');
+                    commentController.clear();
+                  }
+                }, builder: (context, state) {
+                  if (state.requestSend!) {
+                    return CircularProgressIndicator();
+                  }
+                  Map<String, dynamic> data = {
+                    "postId": state.post_id.toString(),
+                    "id": 203.toString(),
+                    "name": "Prajwol Lama",
+                    "email": "tech@jar.com",
+                    "body": commentController.text.toString()
+                  };
+                  return IconButton(
+                    onPressed: () {
+                      if (commentController.text != '') {
+                        context.read<DetailBloc>().add(
+                              DetailPostEvent(
+                                postId: state.post_id,
+                                payload: data,
+                              ),
+                            );
+                        if (state.requestSend == false) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              elevation: 10,
+                              behavior: SnackBarBehavior.floating,
+                              content: SizedBox(
+                                width: MediaQuery.of(context).size.width - 40,
+                                child: Row(
+                                  children: [
+                                    Icon(Icons.check_circle,
+                                        color: Colors.green),
+                                    SizedBox(width: 8),
+                                    Expanded(
+                                      child: Text('Successfully commented'),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              duration: Duration(seconds: 3),
+                              backgroundColor: Colors.grey[800],
+                            ),
+                          );
+                        }
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            elevation: 10,
+                            behavior: SnackBarBehavior.floating,
+                            content: SizedBox(
+                              width: MediaQuery.of(context).size.width - 40,
+                              child: Row(
+                                children: [
+                                  Icon(Icons.clear_rounded, color: Colors.red),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text('Please write comment'),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            duration: Duration(seconds: 3),
+                            backgroundColor: Colors.grey[800],
+                          ),
+                        );
+                      }
+                    },
+                    icon: Icon(Icons.send),
+                  );
+                })
               ],
             ),
           ),

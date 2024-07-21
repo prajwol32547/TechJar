@@ -21,10 +21,7 @@ Future<List<commentModel>> getAllComments(int post_id) async {
   if (result != null && result is List) {
     List<commentModel> commentModelObjList =
         result.map((item) => commentModel.fromJson(item)).toList();
-    print('********************************');
     print(commentModelObjList);
-    print('********************************');
-
     return commentModelObjList;
   } else {
     return [];
@@ -34,4 +31,5 @@ Future<List<commentModel>> getAllComments(int post_id) async {
 dynamic postComments(int post_id, Map<String, dynamic> data) async {
   var response = await postRequest('/post/${post_id}/comments', data);
   print('response is ${response}');
+  return response;
 }

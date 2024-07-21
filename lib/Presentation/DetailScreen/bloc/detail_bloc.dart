@@ -37,6 +37,7 @@ class DetailBloc extends Bloc<DetailEvent, DetailState> {
     try {
       Map<String, dynamic> data = event.payload!;
       var request = await postComments(event.postId!, data);
+      print('request is ${request}');
       if (request != null) {
         emit(state.copyWith(requestSend: false));
       }
