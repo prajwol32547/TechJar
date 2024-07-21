@@ -24,8 +24,9 @@ class _ListCardState extends State<ListCard> {
       color: Colors.white,
       margin: EdgeInsets.symmetric(horizontal: 10.0),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               widget.model.title ??
@@ -35,7 +36,7 @@ class _ListCardState extends State<ListCard> {
               overflow: TextOverflow.ellipsis,
               style: Theme.of(context).textTheme.labelMedium!,
             ),
-            SizedBox(height: 8.0),
+            SizedBox(height: 10.0),
             Text(
               'et iusto sed quo iure\nvoluptatem occaecati omnis eligendi aut ad\nvoluptatem doloribus vel accusantium quis pariatur\nmolestiae porro eius odio et labore et velit aut',
               softWrap: true,
@@ -45,7 +46,7 @@ class _ListCardState extends State<ListCard> {
             ),
             SizedBox(height: 8.0),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
                   onPressed: () => (),

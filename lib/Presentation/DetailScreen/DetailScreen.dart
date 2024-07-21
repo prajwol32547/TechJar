@@ -13,7 +13,7 @@ class DetailScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        forceMaterialTransparency: true,
         elevation: 0,
         title: Text('Comments'),
       ),
@@ -21,7 +21,7 @@ class DetailScreen extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              color: Colors.white.withOpacity(0.8),
+              color: Color.fromARGB(255, 241, 241, 241),
               padding: EdgeInsets.all(8),
               child: BlocConsumer<DetailBloc, DetailState>(
                 listener: (context, state) {
@@ -37,7 +37,7 @@ class DetailScreen extends StatelessWidget {
 
                       return commentTile(context, model);
                     },
-                    separatorBuilder: (context, index) => SizedBox(height: 5),
+                    separatorBuilder: (context, index) => SizedBox(height: 7),
                     itemCount: state.commentModelObj?.length ?? 0,
                   );
                 },

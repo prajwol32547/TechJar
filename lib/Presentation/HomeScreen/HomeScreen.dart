@@ -11,12 +11,16 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        forceMaterialTransparency: true,
+        backgroundColor: Colors.black,
         centerTitle: true,
-        title: Text('List'),
+        title: Text(
+          'List',
+          style: TextStyle(color: Colors.white),
+        ),
       ),
       body: Container(
-        color: Colors.white24,
+        margin: EdgeInsets.only(top: 8),
+        color: Color.fromARGB(255, 241, 241, 241),
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         child: BlocBuilder<HomeBloc, HomeState>(
